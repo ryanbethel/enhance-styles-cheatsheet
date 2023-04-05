@@ -6,7 +6,6 @@ prune true
 
 @plugins
 enhance/arc-plugin-enhance
+cheatsheet
 
 
-@begin
-appID 2004QZZD
