@@ -2,7 +2,7 @@ export default function cheatsheet({ html, state }) {
   const { styles } = state.store
 
   return html`
-<style scope=global>
+<style scope="global">
 body {
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   font-size: 14px;
@@ -30,7 +30,9 @@ summary {
 
 </style>
 <main class='leading3 p0 p5-lg'>
-  <label class='block mb0 mb2-lg'>Search: <input id=search-box class="border1 border-solid border-current p-2" placeholder="search text"></label>
+  <label class='block mb0 mb2-lg'>
+    Search: <input id=search-box class="border1 border-solid border-current p-2" placeholder="search text">
+  </label>
   <section id="list">
   ${styles.map(section => section.rules.length !== 0 ? `
     <details open>
@@ -50,7 +52,7 @@ summary {
         </li>
       `).join('')}
       </ul>
-      
+
     </details>
   `: []).join('')
 }
@@ -63,7 +65,7 @@ function filterList() {
   const input = document.getElementById('search-box');
   const list = document.getElementById('list').getElementsByTagName('li');
   const sections = document.getElementsByTagName('details')
-  
+
   for (var i = 0; i < list.length; i++) {
     const item = list[i];
     if (item.innerHTML.toLowerCase().indexOf(input.value.toLowerCase()) !== -1) {
