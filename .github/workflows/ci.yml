@@ -13,7 +13,7 @@ jobs:
   # Publish to package registries
   publish:
     # Setup
-    if: startsWith(github.ref, 'refs/tags/v')
+    # if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
 
     # Go
@@ -24,7 +24,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org/
 
       - name: Install
         run: npm install
@@ -35,15 +36,14 @@ jobs:
           CI: true
 
       # Publish to npm
-      - name: Publish @RC to npm
-        if: contains(github.ref, 'RC')
-        run: npm publish --tag RC --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish @RC to npm
+      #   if: contains(github.ref, 'RC')
+      #   run: npm publish --tag RC --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @latest to npm
-        if: contains(github.ref, 'RC') == false #'!contains()'' doesn't work lol
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+      # - name: Publish @latest to npm
+      #   if: contains(github.ref, 'RC') == false #'!contains()'' doesn't work lol
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
